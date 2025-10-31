@@ -1,31 +1,27 @@
-import type { Metadata } from 'next'
+import type { Metadata } from "next";
 
-import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
-import { Geist, Geist_Mono, Geist as V0_Font_Geist, Geist_Mono as V0_Font_Geist_Mono, Source_Serif_4 as V0_Font_Source_Serif_4 } from 'next/font/google'
-
-// Initialize fonts
-const _geist = V0_Font_Geist({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700","800","900"] })
-const _geistMono = V0_Font_Geist_Mono({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700","800","900"] })
-const _sourceSerif_4 = V0_Font_Source_Serif_4({ subsets: ['latin'], weight: ["200","300","400","500","600","700","800","900"] })
+import { Analytics } from "@vercel/analytics/next";
+import "./globals.css";
+// (Font imports removed — fonts were initialized but not used; keep layout minimal)
 
 export const metadata: Metadata = {
-  title: 'TYCOON ĐIỆN LỰC - ELV',
-  description: 'Trò chơi mô phỏng quản lý Tập đoàn Điện Lực trong 5 năm nhiệm kỳ',
-  generator: 'v0.app',
-}
+  title: "TYCOON ĐIỆN LỰC - ELV",
+  description:
+    "Trò chơi mô phỏng quản lý Tập đoàn Điện Lực trong 5 năm nhiệm kỳ",
+  generator: "v0.app",
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
-  <html lang="vi">
+    <html lang='vi'>
       <body className={`font-sans antialiased`}>
         {children}
         <Analytics />
       </body>
     </html>
-  )
+  );
 }

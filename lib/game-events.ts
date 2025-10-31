@@ -1,19 +1,19 @@
 export interface GameEvent {
-  id: string
-  title: string
-  icon: string
-  category: string
-  description: string
+  id: string;
+  title: string;
+  icon: string;
+  category: string;
+  description: string;
   choices: Array<{
-    label: string
-    description: string
+    label: string;
+    description: string;
     impact: {
-      finance: number
-      energy: number
-      satisfaction: number
-      politics: number
-    }
-  }>
+      finance: number;
+      energy: number;
+      satisfaction: number;
+      politics: number;
+    };
+  }>;
 }
 
 export const EVENTS: GameEvent[] = [
@@ -57,7 +57,8 @@ export const EVENTS: GameEvent[] = [
       },
       {
         label: "⚡ Chấp nhận và chuẩn bị chịu giảm phát",
-        description: "Tăng điện tái tạo nhưng phải giảm phát/cắt giảm công suất dư",
+        description:
+          "Tăng điện tái tạo nhưng phải giảm phát/cắt giảm công suất dư",
         impact: { finance: -10, energy: -20, satisfaction: 5, politics: 10 },
       },
       {
@@ -182,7 +183,8 @@ export const EVENTS: GameEvent[] = [
       },
       {
         label: "🔥 Tăng dùng than thay LNG",
-        description: "Giá rẻ hơn nhưng tăng khí thải và áp lực về mục tiêu xanh",
+        description:
+          "Giá rẻ hơn nhưng tăng khí thải và áp lực về mục tiêu xanh",
         impact: { finance: 15, energy: 5, satisfaction: 0, politics: -20 },
       },
       {
@@ -217,10 +219,10 @@ export const EVENTS: GameEvent[] = [
       },
     ],
   },
-]
+];
 
 export function generateEvent(): GameEvent {
-  return EVENTS[Math.floor(Math.random() * EVENTS.length)]
+  return EVENTS[Math.floor(Math.random() * EVENTS.length)];
 }
 
 export function checkGameOver(kpis: any, year: number, quarter: number): any {
@@ -230,7 +232,7 @@ export function checkGameOver(kpis: any, year: number, quarter: number): any {
       status: "lose",
       reason: "Tập đoàn phá sản - Quốc hội điều tra",
       finalKpis: kpis,
-    }
+    };
   }
 
   if (kpis.energy <= 20) {
@@ -238,7 +240,7 @@ export function checkGameOver(kpis: any, year: number, quarter: number): any {
       status: "lose",
       reason: "Mất điện toàn quốc - Quân đội vào cuộc",
       finalKpis: kpis,
-    }
+    };
   }
 
   if (kpis.satisfaction <= 20) {
@@ -246,7 +248,7 @@ export function checkGameOver(kpis: any, year: number, quarter: number): any {
       status: "lose",
       reason: "Bạo loạn xã hội",
       finalKpis: kpis,
-    }
+    };
   }
 
   if (kpis.politics <= 20) {
@@ -254,8 +256,8 @@ export function checkGameOver(kpis: any, year: number, quarter: number): any {
       status: "lose",
       reason: "Cách chức vì mất tin tưởng chính trị",
       finalKpis: kpis,
-    }
+    };
   }
 
-  return null
+  return null;
 }

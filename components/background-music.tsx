@@ -7,7 +7,6 @@ export default function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  console.log("hehehehe");
 
   useEffect(() => {
     if (audioRef.current) {

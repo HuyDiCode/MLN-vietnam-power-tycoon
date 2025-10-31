@@ -2,9 +2,10 @@
 
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import type { GameEvent } from "@/lib/game-events";
 
 interface EventPanelProps {
-  event: any;
+  event: GameEvent | null;
   onDecision: (choiceIndex: number) => void;
 }
 
@@ -39,43 +40,46 @@ export default function EventPanel({ event, onDecision }: EventPanelProps) {
           <p className='text-sm text-gray-400 font-semibold'>
             CHỌN CHIẾN LƯỢC:
           </p>
-          {event.choices.map((choice: any, index: number) => (
-            <Button
-              key={index}
-              onClick={() => onDecision(index)}
-              className='w-full text-left h-auto py-4 px-4 bg-slate-700 hover:bg-slate-600 text-white border border-slate-500 hover:border-blue-400 transition-all'
-            >
-              <div className='flex flex-col items-start gap-2 w-full'>
-                <div className='font-bold text-blue-300'>{choice.label}</div>
-                <div className='text-xs text-gray-400'>
-                  {choice.description}
-                </div>
+          {event.choices.map(
+            (choice: GameEvent["choices"][number], index: number) => (
+              <Button
+                key={index}
+                onClick={() => onDecision(index)}
+                className='w-full text-left h-auto py-4 px-4 bg-slate-700 hover:bg-slate-600 text-white border border-slate-500 hover:border-blue-400 transition-all'
+              >
+                <div className='flex flex-col items-start gap-2 w-full'>
+                  <div className='font-bold text-blue-300'>{choice.label}</div>
+                  <div className='text-xs text-gray-400'>
+                    {choice.description}
+                  </div>
 
-                {/* Impact Preview */}
-                <div className='w-full pt-2 mt-2 border-t border-slate-500'>
-                  <div className='grid grid-cols-2 gap-2 text-xs'>
-                    {Object.entries(choice.impact).map(
-                      ([key, value]: [string, any]) => {
-                        const sign = value > 0 ? "+" : "";
-                        const color =
-                          value > 0
-                            ? "text-green-400"
-                            : value < 0
-                            ? "text-red-400"
-                            : "text-gray-400";
-                        return (
-                          <div key={key} className={color}>
-                            {key.charAt(0).toUpperCase() + key.slice(1)}: {sign}
-                            {value}
-                          </div>
-                        );
-                      }
-                    )}
+                  {/* Impact Preview */}
+                  <div className='w-full pt-2 mt-2 border-t border-slate-500'>
+                    <div className='grid grid-cols-2 gap-2 text-xs'>
+                      {Object.entries(choice.impact).map(
+                        ([key, value]: [string, number]) => {
+                          const sign = value > 0 ? "+" : "";
+                          const color =
+                            value > 0
+                              ? "text-green-400"
+                              : value < 0
+                              ? "text-red-400"
+                              : "text-gray-400";
+                          return (
+                            <div key={key} className={color}>
+                              {key.charAt(0).toUpperCase() + key.slice(1)}:{" "}
+                              {sign}
+                              {value}
+                            </div>
+                          );
+                        }
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Button>
-          ))}
+              </Button>
+            )
+          )}
         </div>
       </div>
     </Card>

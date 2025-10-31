@@ -1,3 +1,17 @@
+export type Kpis = {
+  finance: number;
+  energy: number;
+  satisfaction: number;
+  politics: number;
+};
+
+export type GameOverResult = {
+  status: "lose" | "win";
+  reason: string;
+  finalKpis: Kpis;
+  history?: unknown[];
+};
+
 export interface GameEvent {
   id: string;
   title: string;
@@ -224,8 +238,7 @@ export const EVENTS: GameEvent[] = [
 export function generateEvent(): GameEvent {
   return EVENTS[Math.floor(Math.random() * EVENTS.length)];
 }
-
-export function checkGameOver(kpis: any, year: number, quarter: number): any {
+export function checkGameOver(kpis: Kpis): GameOverResult | null {
   // Check if any KPI is too low (game over condition)
   if (kpis.finance <= 20) {
     return {

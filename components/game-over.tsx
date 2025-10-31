@@ -2,9 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import type { GameOverResult } from "@/lib/game-events";
 
 interface GameOverProps {
-  result: any;
+  result: GameOverResult;
   onRestart: () => void;
 }
 

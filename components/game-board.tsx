@@ -4,24 +4,30 @@ import { useState, useEffect } from "react";
 import { Progress } from "@/components/ui/progress";
 import KpiDashboard from "./kpi-dashboard";
 import EventPanel from "./event-panel";
-import { generateEvent, checkGameOver } from "@/lib/game-events";
+import {
+  generateEvent,
+  checkGameOver,
+  Kpis,
+  GameEvent,
+  GameOverResult,
+} from "@/lib/game-events";
 import { calculateImpact } from "@/lib/game-mechanics";
 
 interface GameBoardProps {
-  onGameOver: (result: any) => void;
+  onGameOver: (result: GameOverResult) => void;
 }
 
 export default function GameBoard({ onGameOver }: GameBoardProps) {
-  const [year, setYear] = useState(1);
-  const [quarter, setQuarter] = useState(1);
-  const [kpis, setKpis] = useState({
+  const [year, setYear] = useState<number>(1);
+  const [quarter, setQuarter] = useState<number>(1);
+  const [kpis, setKpis] = useState<Kpis>({
     finance: 70,
     energy: 80,
     satisfaction: 75,
     politics: 80,
   });
-  const [currentEvent, setCurrentEvent] = useState<any>(null);
-  const [history, setHistory] = useState<any[]>([]);
+  const [currentEvent, setCurrentEvent] = useState<GameEvent | null>(null);
+  const [history, setHistory] = useState<unknown[]>([]);
   const [gameMessage, setGameMessage] = useState("");
 
   // Sinh sự kiện đầu tiên
@@ -60,7 +66,7 @@ export default function GameBoard({ onGameOver }: GameBoardProps) {
     setHistory([...history, historyEntry]);
 
     // Kiểm tra kết thúc trò chơi
-    const gameOverResult = checkGameOver(newKpis, year, quarter);
+    const gameOverResult = checkGameOver(newKpis);
     if (gameOverResult) {
       onGameOver(gameOverResult);
       return;

@@ -18,29 +18,29 @@ const KPI_CONFIG = {
     icon: "💰",
     danger: 30,
     warning: 50,
-    color: "text-green-400",
+    color: "text-green-400"
   },
   energy: {
     label: "An ninh năng lượng",
     icon: "⚡",
     danger: 30,
     warning: 50,
-    color: "text-yellow-400",
+    color: "text-yellow-400"
   },
   satisfaction: {
     label: "Hài lòng dân",
     icon: "👥",
     danger: 30,
     warning: 50,
-    color: "text-red-400",
+    color: "text-red-400"
   },
   politics: {
     label: "Chính trị",
     icon: "🏛️",
     danger: 30,
     warning: 50,
-    color: "text-purple-400",
-  },
+    color: "text-purple-400"
+  }
 };
 
 export default function KpiDashboard({ kpis }: KpiDashboardProps) {
@@ -58,10 +58,10 @@ export default function KpiDashboard({ kpis }: KpiDashboardProps) {
   };
 
   return (
-    <Card className='bg-slate-800 border-2 border-slate-700 p-6 space-y-4'>
-      <h2 className='text-2xl font-bold text-blue-400'>📊 CHỈ SỐ CHÍNH</h2>
+    <Card className="bg-slate-800 border-2 border-slate-700 p-6 space-y-4">
+      <h2 className="text-2xl font-bold text-blue-400">📊 CHỈ SỐ CHÍNH</h2>
 
-      <div className='space-y-4'>
+      <div className="space-y-4">
         {Object.entries(kpis).map(([key, value]) => {
           const config = KPI_CONFIG[key as keyof typeof KPI_CONFIG];
           const { status, color } = getStatus(
@@ -78,16 +78,16 @@ export default function KpiDashboard({ kpis }: KpiDashboardProps) {
           return (
             <div
               key={key}
-              className='bg-slate-700 p-4 rounded border border-slate-600'
+              className="bg-slate-700 p-4 rounded border border-slate-600"
             >
-              <div className='flex justify-between items-center mb-2'>
-                <div className='flex items-center gap-2'>
+              <div className="flex justify-between items-center mb-2">
+                <div className="flex items-center gap-2">
                   <span>{config.icon}</span>
-                  <span className='font-semibold text-white'>
+                  <span className="font-semibold text-white">
                     {config.label}
                   </span>
                 </div>
-                <div className='text-right'>
+                <div className="text-right">
                   <div className={`font-bold ${config.color}`}>
                     {Math.round(value)}
                   </div>
@@ -100,14 +100,14 @@ export default function KpiDashboard({ kpis }: KpiDashboardProps) {
         })}
       </div>
 
-      {/* Alerts */}
-      <div className='mt-6 pt-4 border-t border-slate-600 space-y-2'>
-        <p className='text-xs text-gray-400'>Lưu ý:</p>
-        <ul className='text-xs text-gray-300 space-y-1 ml-2'>
-          <li>• Tài chính &lt; 30: Tập đoàn phá sản</li>
-          <li>• An niên &lt; 30: Mất điện toàn quốc</li>
-          <li>• Hài lòng &lt; 30: Biểu tình lớn</li>
-          <li>• Chính trị &lt; 30: Bị cách chức</li>
+      {/* Cảnh báo */}
+      <div className="mt-6 pt-4 border-t border-slate-600 space-y-2">
+        <p className="text-xs text-gray-400">Lưu ý:</p>
+        <ul className="text-xs text-gray-300 space-y-1 ml-2">
+          <li>• Tài chính &lt; 20: Tập đoàn phá sản</li>
+          <li>• An ninh năng lượng &lt; 20: Mất điện toàn quốc</li>
+          <li>• Hài lòng dân &lt; 20: Bạo loạn xã hội</li>
+          <li>• Chính trị &lt; 20: Bị cách chức</li>
         </ul>
       </div>
     </Card>

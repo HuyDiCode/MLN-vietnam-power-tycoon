@@ -33,6 +33,4 @@ export default function Home() {
       {gameState === "gameOver" && <GameOver result={gameResult!} onRestart={handleRestart} />}
     </main>
   )
-    </main>
-  );
 }

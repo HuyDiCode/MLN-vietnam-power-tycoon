@@ -94,7 +94,7 @@ export default function KpiDashboard({ kpis }: KpiDashboardProps) {
                   <div className={`text-xs ${color}`}>{status}</div>
                 </div>
               </div>
-              <Progress value={value} className='h-2' />
+              <Progress value={value} className={`h-2 ${progressColor}`} />
             </div>
           );
         })}
